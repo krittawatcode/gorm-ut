@@ -7,8 +7,8 @@ import (
 
 	"github.com/Rosaniline/gorm-ut/pkg/model"
 	"github.com/go-test/deep"
+	"github.com/gofrs/uuid"
 	"github.com/jinzhu/gorm"
-	"github.com/satori/go.uuid"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 	"gopkg.in/DATA-DOG/go-sqlmock.v1"
@@ -50,8 +50,8 @@ func TestInit(t *testing.T) {
 
 func (s *Suite) Test_repository_Get() {
 	var (
-		id   = uuid.NewV4()
-		name = "test-name"
+		id, _ = uuid.NewV4()
+		name  = "test-name"
 	)
 
 	s.mock.ExpectQuery(regexp.QuoteMeta(
@@ -68,8 +68,8 @@ func (s *Suite) Test_repository_Get() {
 
 func (s *Suite) Test_repository_Create() {
 	var (
-		id   = uuid.NewV4()
-		name = "test-name"
+		id, _ = uuid.NewV4()
+		name  = "test-name"
 	)
 
 	s.mock.ExpectQuery(regexp.QuoteMeta(
