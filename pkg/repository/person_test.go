@@ -32,6 +32,7 @@ func (s *Suite) SetupSuite() {
 	db, s.mock, err = sqlmock.New()
 	require.NoError(s.T(), err)
 
+	// s.DB, err = gorm.Open("postgres", db)
 	s.DB, err = gorm.Open("postgres", db)
 	require.NoError(s.T(), err)
 
@@ -59,6 +60,13 @@ func (s *Suite) Test_repository_Get() {
 		WithArgs(id.String()).
 		WillReturnRows(sqlmock.NewRows([]string{"id", "name"}).
 			AddRow(id.String(), name))
+
+	// query := "SELECT * FROM person WHERE id = \\?"
+
+	// s.mock.ExpectQuery(query).
+	// 	WithArgs(id.String()).
+	// 	WillReturnRows(sqlmock.NewRows([]string{"id", "name"}).
+	// 		AddRow(id.String(), name))
 
 	res, err := s.repository.Get(id)
 
