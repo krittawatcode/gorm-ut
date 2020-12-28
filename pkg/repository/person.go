@@ -6,6 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+// Repository ...
 type Repository interface {
 	Get(id uuid.UUID) (*model.Person, error)
 	Create(id uuid.UUID, name string) error
@@ -32,6 +33,7 @@ func (p *repo) Get(id uuid.UUID) (*model.Person, error) {
 	return person, err
 }
 
+// CreateRepository ...
 func CreateRepository(db *gorm.DB) Repository {
 	return &repo{
 		DB: db,
